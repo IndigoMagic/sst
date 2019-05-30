@@ -2,7 +2,7 @@
 yum -y update
 yum -y install epel-release python-setuptools m2crypto firewalld
 easy_install pip
-pip install ##
+pip install shadowsocks
 
 echo "Preparations have been completed！"
 echo "input ss_server_port(do not overlap with existing ports)"
@@ -47,7 +47,7 @@ fi
 
 read -p "input password: " -s password
 
-cat>>/etc/##.json<<EOF
+cat>>/etc/shadowsocks.json<<EOF
 {
     "server":"0.0.0.0",
     "server_port":${server_port},
