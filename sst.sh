@@ -2,12 +2,12 @@
 yum -y update
 yum -y install epel-release python-setuptools m2crypto firewalld
 easy_install pip
-pip install shadowsocks
+pip install #神奇单词#
 
 echo "Preparations have been completed！"
-echo "input ss_server_port(do not overlap with existing ports)"
-echo "[default ss_server_port: 45678]"
-read -p "input ss_server_port: " server_port
+echo "input server_port(do not overlap with existing ports)"
+echo "[default server_port: 45678]"
+read -p "input server_port: " server_port
 
 if [[ -z ${server_port} ]];then
 server_port="45678"
@@ -23,7 +23,7 @@ do
     else
     echo "port ${server_port} is used"
     echo "Please select another port that is not occupied(like 40000-60000)"
-    read -p "input ss_server_port: " server_port
+    read -p "input server_port: " server_port
     fi
 done
 else
@@ -39,7 +39,7 @@ do
     else
     echo "port ${server_port} is used"
     echo "Please select another port that is not occupied(like 40000-60000)"
-    read -p "input ss_server_port: " server_port
+    read -p "input server_port: " server_port
     fi
 done
 fi
@@ -47,7 +47,7 @@ fi
 
 read -p "input password: " -s password
 
-cat>>/etc/shadowsocks.json<<EOF
+cat>>/etc/#神奇单词#.json<<EOF
 {
     "server":"0.0.0.0",
     "server_port":${server_port},
@@ -57,14 +57,14 @@ cat>>/etc/shadowsocks.json<<EOF
     "method":"aes-256-cfb"
 }
 EOF
-echo "ss info have set up!"
+echo "#神奇单词# info have set up!"
 cat>>/etc/rc.local<<EOF
-ssserver -c /etc/shadowsocks.json -d start
+ssserver -c /etc/#神奇单词#.json -d start
 EOF
-echo "ss starts up automatically!"
+echo "#神奇单词# starts up automatically!"
 systemctl start firewalld
 echo "firewalld started!"
 firewall-cmd --permanent --zone=public --add-port=${server_port}/tcp
 firewall-cmd --reload
-ssserver -c /etc/shadowsocks.json -d start
-echo "ss service started!"
+ssserver -c /etc/#神奇单词#.json -d start
+echo "#神奇单词# service started!"
